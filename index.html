@@ -21,10 +21,10 @@
 <body>
     <section class="d-flex justify-content-center">
         <ol class="first-ol" id="first-container">
-            <li class="first-li">
+            <li class="first-li" id="id">
                 <input type="email" onblur="emailValidation()" id="email" placeholder="enter email"/>
                 <button class="btn btn-primary m-2" onclick="addList()">add</button>
-                <button class="btn btn-danger">delete</button>
+                <button class="btn btn-danger" id="delItem">delete</button>
                 <p id="error"></p>
             </li>
         </ol>

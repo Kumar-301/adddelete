@@ -1,7 +1,7 @@
 let olList = document.getElementById("first-container")
 let emailId = document.getElementById("email")
 let paraId = document.getElementById("error")
-
+let delItem = document.getElementById("delItem")
 let rowcount = 0
 
 let addBox = false;
@@ -40,28 +40,58 @@ function validEmail(enterValue,message){
 function deleteListItem(btnId){
     //console.log(btnId);
     let delList = document.getElementById(btnId);
-    olList.removeChild(delList);
+    //console.log(delList)
+    //console.log(delList.value);
+    delList.value = "";
+    //olList.removeChild(delList);
+    
     rowcount -= 1;
-    console.log(rowcount)
+    //console.log(rowcount)
 
 }
+
+function delTotalItem(totalId){
+    
+    console.log(totalId);
+    if(rowcount !== 0){
+        let liItem = document.getElementById(totalId);
+        olList.removeChild(liItem);
+        rowcount -= 1;
+    }else{
+        alert("minimum one emaid is required");
+    }
+    
+}
+let listId;
+delItem.addEventListener('click',function(){
+    delTotalItem(rowcount + "id");
+  
+})
+
 function addList(){
     rowcount += 1
-    console.log(rowcount);
-    if(rowcount >= 8){
+   // console.log(rowcount);
+    if(rowcount >= 7){
         alert("max limit exceed")
+        rowcount = 6;
     }
     else {
+        
         let list = document.createElement('li');
-        let listId = rowcount + "id";
+        listId = rowcount + "id";
         list.id = listId ;
         list.classList.add("first-li",'m-3','p-3');
-        //console.log(listId)
+        //console.log("listID" + listId)
         
+        
+
+
         let para = document.createElement('p')
 
         let input = document.createElement('input');
-        input.type = "email"
+        input.type = "email";
+        enterId= rowcount + "email";
+        input.id = enterId;
         input.placeholder = "enter email";
         input.onblur = function () {
             validEmail(input.value, para)
@@ -80,11 +110,7 @@ function addList(){
         btnDel.innerHTML = "delete";
         btnDel.classList.add('btn', 'btn-danger')
         btnDel.addEventListener('click', function () {
-            deleteListItem(listId);
-            
-
-            
-            
+            deleteListItem(input.id);
         }) 
         
         
